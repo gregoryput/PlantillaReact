@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    box-sizing: border-box;
+    position: relative;
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+h1,
+h2,
+h3,
+h4 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+.box-container-align {
+    display: flex;
+    align-items: center;
+}
+.appDark {
+    min-height: 100dvh;
+    color: #ffffff !important;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.61);
+    filter: blur(50%);
+}
+
+.appLigth {
+    background-color: transparent;
+    min-height: 100dvh;
+    color: #000 !important;
+}
+
+
+.appDark::before {
+    content: "";
+    position: absolute;
+    background-color: #111927;
+    background-image: 
+        radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 39%), 
+        radial-gradient(at 82% 65%, hsl(218.00, 39%, 11%) 0, transparent 55%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: moveBackground 5s infinite alternate;
+    background-size: 200% 200%;
+}
+
+.appLigth::before {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    background-image: 
+        radial-gradient(at 47% 33%, hsla(162, 77%, 40%, 0.534) 0, transparent 39%), 
+        radial-gradient(at 82% 65%, hsl(0, 0%, 100%) 0, transparent 55%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: moveBackground 5s infinite alternate;
+    background-size: 200% 200%;
+}
+
+
+@keyframes moveBackground {
+    0% {
+      background-position: 47% 33%, 82% 65%;
+    }
+    100% {
+      background-position: 50% 40%, 50% 60%;
+    }
+  }
+
+
+  .btn-credi{
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+  }
+
+  .footer:hover{
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 15px;
+    background-color: rgba(194, 194, 194, 0.164);
+    border-radius: 60px;
+  }

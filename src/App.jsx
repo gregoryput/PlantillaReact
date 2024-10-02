@@ -1,42 +1,36 @@
-import ProtectedRoute from "@/router/ProtectedRoute";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, ProjectView } from "./views";
-import { Login, PageError } from "./page";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <ProtectedRoute roles={["Administrador"]}>
-        <Home />
-      </ProtectedRoute>
-    ),
-    errorElement: <PageError />,
-    children: [
-      {
-        path: "/projectView",
-        element: (
-          <ProtectedRoute roles={["Administrador"]}>
-            <ProjectView />
-          </ProtectedRoute>
-        ),
-      },
-    ],
-  },
+import { ConfigProvider, theme } from "antd";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/routes";
+import { Mod } from "./hook/Config";
 
-  {
-    path: "/login",
-    element: (
-      <ProtectedRoute roles={["Administrador"]}>
-        <Login />
-      </ProtectedRoute>
-    ),
-    errorElement: <PageError />,
-  },
-]);
 
 function App() {
-  return <RouterProvider router={router} />;
+
+  const { isActive } = Mod();
+
+  // let dark = <button onClick={() => { setMod(!mod) }}>dark</button>
+
+  return (
+    <ConfigProvider
+      theme={{
+         algorithm: isActive == false ? theme.darkAlgorithm : theme.defaultAlgorithm,
+
+        token: {
+          colorSuccess: "#5f6062",
+          colorPrimary: "#00703c",
+          colorInfo: "#00703c",
+          colorError: "#f90509",
+          borderRadius: 25
+        },
+       
+      }}
+    >
+      <div className={`${isActive === false ? "appDark" : "appLigth"}`}>
+        <RouterProvider router={router} />
+      </div>
+    </ConfigProvider>
+  )
 }
 
 export default App;
