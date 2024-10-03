@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children, roles }) => {
     const navigate = useNavigate();
     
     useEffect(() => {
-        if (!(roles.includes("a"))) {
+        if (token !=null) {
             return navigate('/Login');
         }
 
