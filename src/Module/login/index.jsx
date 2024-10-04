@@ -2,11 +2,12 @@
 import { Mod, useLanguageStore } from "@/hook/Config";
 import "./login.css"
 import { Github, Linkedin, Moon, Sun } from "lucide-react"
-import { Button, Card, Form, Input } from "antd";
+import { Card } from "antd";
 import img from "../../assets/logo.jpeg";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { FormLogin } from "./component/Form";
 
 export default function Login() {
   const { isActive, toggleActive } = Mod();
@@ -21,13 +22,7 @@ export default function Login() {
     }
   }, []);
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
 
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
 
   return (
     <div className="container-login">
@@ -52,60 +47,10 @@ export default function Login() {
           className="form-card"
         >
           <h1 className="title-login">
-          {t("title")}
+            {t("title")}
           </h1>
           <p className="subtitle-login">¡Bienvenido a la Familia Progreso! Inicia sesión para continuar.</p>
-
-
-          <Form
-            name="basic"
-            className="form"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-
-          >
-            <Form.Item
-
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your username!',
-                },
-              ]}
-            >
-              <Input placeholder="Username" style={{ height: "40px", marginTop: "20px" }} />
-            </Form.Item>
-
-            <Form.Item
-
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                },
-              ]}
-            >
-              <Input.Password placeholder="Password" style={{ height: "40px", marginTop: "10px" }} />
-            </Form.Item>
-
-
-
-            <Form.Item
-            >
-              <Button type="primary" style={{ width: "100%", height: "40px", marginTop: "30px" }} htmlType="submit">
-                Iniciar
-              </Button>
-            </Form.Item>
-
-            <Form.Item
-            >
-              <Button style={{ width: "100%", height: "40px" }} >
-                Auth0
-              </Button>
-            </Form.Item>
-          </Form>
+          <FormLogin />
         </Card>
       </div>
 
@@ -121,7 +66,7 @@ export default function Login() {
           </div>
         </div>
         <div >
-        <p style={{  fontWeight: "lighter", cursor: "default", fontSize: 13 }}>Version 1.0.0</p>
+          <p style={{ fontWeight: "lighter", cursor: "default", fontSize: 13 }}>Version 1.0.0</p>
         </div>
       </footer>
     </div>

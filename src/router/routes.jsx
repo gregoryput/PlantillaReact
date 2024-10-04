@@ -1,8 +1,9 @@
 import LayoutApp from "@/layout";
-import { Login, PageError } from "@/page";
 import ProtectedRoute from "@/router/ProtectedRoute";
-import {  ProjectView } from "@/views";
+import { Home, User } from "@/Module/views";
 import { createBrowserRouter } from "react-router-dom";
+import PageError from "@/Module/error/pageError";
+import Login from "@/Module/login";
 
 export const router = createBrowserRouter([
     {
@@ -15,10 +16,18 @@ export const router = createBrowserRouter([
       errorElement: <PageError />,
       children: [
         {
-          path: "/projectView",
+          path: "/home",
           element: (
             <ProtectedRoute roles={["Administrador"]}>
-              <ProjectView />
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/user",
+          element: (
+            <ProtectedRoute roles={["Administrador"]}>
+              <User />
             </ProtectedRoute>
           ),
         },
