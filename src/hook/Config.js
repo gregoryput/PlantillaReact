@@ -8,7 +8,7 @@ const getLocalStorageValue = (key, defaultValue) => {
 };
 
 export const Mod = create((set) => ({
-  isActive: getLocalStorageValue('isActive', false),
+  isActive: getLocalStorageValue('isActive', true),
   toggleActive: () =>
     set((state) => {
       const newIsActive = !state.isActive;

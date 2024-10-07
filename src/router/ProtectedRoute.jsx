@@ -1,16 +1,21 @@
 import {useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const ProtectedRoute = ({ children, roles }) => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     // const userRol = getRolesByToken(token);
-
+    let rol = "Administrador";
     const navigate = useNavigate();
-    
+    const location = useLocation();
     useEffect(() => {
-        if (token !=null) {
+        if (!roles.includes(rol)) {
             return navigate('/Login');
+        }
+
+        if (location.pathname == "/"){
+            return navigate('/home');
+
         }
 
     }, [])
